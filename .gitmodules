@@ -1,0 +1,12 @@
+[submodule "database"]
+	path = database
+	url = git@github.com:Shiba-Inu-Developers/shiba-ciphers-db.git
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:Shiba-Inu-Developers/shiba-ciphers-fe.git
+[submodule "backend"]
+	path = backend
+	url = git@github.com:Shiba-Inu-Developers/shiba-ciphers-be.git
+[submodule "service"]
+	path = service
+	url = git@github.com:Shiba-Inu-Developers/shiba-ciphers-sv.git

@@ -1,0 +1,36 @@
+version: "3.9"
+include:
+  - ./database/docker-compose.yml
+volumes:
+  fe-volume:
+services:
+  fe:
+    build: ./frontend/
+    volumes:
+      - fe-volume:/app/dist
+  be:
+    build: ./backend/
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 5001:5000
+  sv:
+    build: ./service/
+    restart: always
+    ports:
+      - 6001:6000
+  caddy:
+    image: caddy:2.7.5-alpine
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - fe
+    volumes:
+      - ./caddy/data:/data
+      - ./caddy/config:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - fe-volume:/app

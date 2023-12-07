@@ -1,0 +1,18 @@
+:80 {
+  root * /app
+
+  handle_path /api/* {
+    rewrite * /weatherforecast{uri}
+
+    reverse_proxy be:5000
+  }
+
+  handle_path /sv/* {
+      reverse_proxy sv:6000
+  }
+
+  handle {
+    try_files {path} /
+    file_server
+  }
+}
