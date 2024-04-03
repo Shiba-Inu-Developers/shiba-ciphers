@@ -2,8 +2,6 @@
   root * /app
 
   handle_path /api/* {
-    rewrite * /weatherforecast{uri}
-
     reverse_proxy be:5000
   }
 
